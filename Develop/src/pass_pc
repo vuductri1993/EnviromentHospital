@@ -11,3 +11,74 @@ JWT_SECRET=NTNv7j0TuYARvmNMmWXo6fKvM4o6nv/aUi9ryX38ZH+L1bkrnD1ObOQ8JAUmHCBq7Iy7o
 JWT_ISSUER=hospital
 JWT_ACCESS_TTL_SECONDS=300
 JWT_REFRESH_TTL_SECONDS=604800
+
+
+
+
+Kibana / Elasticsearch (stack bạn đang chạy)
+Trong file compose mình đưa, bạn đang để:
+
+xpack.security.enabled=false
+Nên:
+
+Kibana: không cần đăng nhập
+Elasticsearch: không có user/password (truy cập thẳng http://localhost:9200)
+Grafana
+Username: admin
+Password: admin (lần đầu vào sẽ bắt đổi mật khẩu)
+Nếu admin/admin không đúng (do còn data/volume cũ), reset trong container:
+
+docker exec -it grafana grafana-cli admin reset-admin-password "NewStrongPassword123!"
+Prometheus
+Không có đăng nhập (mặc định)
+Redis
+Không có password (mặc định)
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 12345678(passPC)
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+
+
+
+	    datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: admin (pass laptop)
+    driver-class-name: org.postgresql.Driver
+
+LAPTOP:
+
+HOSPITAL_URL=jdbc:postgresql://localhost:5432/hospital_db
+HOSPITAL_USERNAME=postgres
+HOSPITAL_PASSWORD=admin
+HOSPITAL_DRIVER_CLASS_NAME=org.postgresql.Driver
+HOSPITAL_MAXIMUM_POOL_SIZE=10
+HOSPITAL_MINIMUM_IDLE=2
+HOSPITAL_POOL_NAME=hospital-gateway-pool
+REDIS_HOST=localhost
+REDIS_PORT=6789
+JWT_SECRET=NTNv7j0TuYARvmNMmWXo6fKvM4o6nv/aUi9ryX38ZH+L1bkrnD1ObOQ8JAUmHCBq7Iy7otZcyAagBLHVKvvYaIpmMuxmARQ97jUVG16Jkpkp1wXOPsrF9zwew6TpczyHkHgX5EuLg2MeBuiT/qJACs1J0apruOOJCg/gOtkjB4c=
+JWT_ISSUER=hospital
+JWT_ACCESS_TTL_SECONDS=300
+JWT_REFRESH_TTL_SECONDS=604800
+
+PC:
+
+
+
+
+TRIVD_SEND_NOTIFICATION
+oumn jwca rxnv czvv
+
+
+SMTP Host	smtp.gmail.com
+Port TLS	587
+Port SSL	465
+Username	your_email@gmail.com
+Password	App Password
